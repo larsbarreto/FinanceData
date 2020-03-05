@@ -14,6 +14,7 @@ finance['donation_date'] = finance['donation_date'].astype('datetime64[ns]')
 # convert strings to integers and remove $
 finance['donation_amount'] = finance['donation_amount'].str.replace(r'\D', '').astype(int)
 
+# Donations & Aggregations
 # max donation : $300
 print(finance.describe())
 
@@ -32,7 +33,7 @@ re_donor = finance.pivot_table(index=['birthdate','last_name', 'first_name','cou
 print(re_donor)
 
 # 5 donors who've given the most, cumulatively
-# need to combine donor records/contribution amounts
+# need to combine donor records/contribution amounts to analyze total donations here
 high_donor = finance.pivot_table(index="county",values=["donation_amount"],aggfunc = 'sum')
 print(high_donor.nlargest(5, ['donation_amount']))
 
@@ -77,8 +78,14 @@ print(domain_count)
 mode_date = finance['donation_date'].value_counts()[0:5]
 print(mode_date)
 
-#seasonal effects
+# seasonal effects
+# need to work with matplotlib to plot these seasonal effects, a line graph with total daily dontributions amounts needed
+
+# donor age, donor age and email 
+# also need to work with matplotlib here, would most likely split data by age group and look for trend
+
+# donation wait times
+# need to find an easier way to locate duplicate donors for this analysis
 
 
-#donor age
 
